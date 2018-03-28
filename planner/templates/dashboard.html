@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Plan your party</h1>
+
+    <div class="container">
+    <div class="row align-items-start">
+    <div class="col-3">
+        <h6>Add Guest</h6>
+    <form method="post"  action={% url 'add_guest'  %}>
+        {% csrf_token %}
+        {{ guest_form.as_table }}
+       <input class="btn btn-primary" type="submit" value="Add Guest" />
+   </form>
+    </div>
+    <br>
+    <div class="col-3">
+    <h6>Add Item</h6>
+    <form method="post"  action={% url 'add_finance'  %}>
+        {% csrf_token %}
+        {{ finance_form.as_table }}
+       <input class="btn btn-primary" type="submit" value="Add Item" />
+   </form>
+    </div>
+        <div class="col-3">
+        <h6>Enter the Buffet details</h6>
+    <form method="post"  action={% url 'buffet_price'  %}>
+        {% csrf_token %}
+        {{ buffet_form.as_table }}
+       <input class="btn btn-primary" type="submit" value="Add Buffet Rate" />
+   </form>
+            </div>
+
+    <br>
+    <br>
+        <div class="col-3">
+<h2>TOTAL COST</h2>
+    <h2>{{ total_cost }}</h2>
+    <br>
+    <br>
+            </div>
+</div>
+
+
+    <h3>GUEST LIST</h3>
+    <form method="post" action="">
+    {% csrf_token %}
+    {{ guests.management_form }}
+    {% for guest in guests %}
+        {{ guest.as_table }}
+        <br>
+    {% endfor %}
+    <input class="btn btn-primary" type="submit" value="Update" name="guest" />
+</form>
+
+    <table>
+    <tr><th>Total Adults</th><th>Total Kids</th></tr>
+    <tr>
+    {% for key,value in gcount.items %}
+            <td>{{ value }}</td>
+{% endfor %}
+    </tr>
+
+</table>
+
+    <br>
+    <br>
+
+    <h3>FINANCE</h3>
+    <form method="post" action="">
+    {% csrf_token %}
+    {{ finance.management_form }}
+    {% for fin in finance %}
+        {{ fin.as_table }}
+        <br>
+    {% endfor %}
+    <input class="btn btn-primary" type="submit" value="Update" name="fin" />
+</form>
+<br>    <br>
+    <br>
+
+
+</div>
+{% endblock content %}

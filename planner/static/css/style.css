@@ -1,0 +1,12 @@
+body {
+    background: white;
+    font: 15px arial
+}
+
+form {
+    overflow:auto;
+    background: #f5f5f0;
+    border: 1px solid #ebebe0;
+
+
+}
